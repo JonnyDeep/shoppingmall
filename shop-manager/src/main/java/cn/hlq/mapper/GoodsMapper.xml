@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hlq.dao.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="cn.hlq.common.pojo.Goods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_no" property="goodsNo" jdbcType="VARCHAR" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_category_id" property="goodsCategoryId" jdbcType="INTEGER" />
+    <result column="sellid" property="sellid" jdbcType="INTEGER" />
+    <result column="gtm_create_time" property="gtmCreateTime" jdbcType="BIGINT" />
+    <result column="gtm_modify_time" property="gtmModifyTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_no, goods_name, goods_category_id, sellid, gtm_create_time, gtm_modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.hlq.common.pojo.Goods" >
+    insert into goods (id, goods_no, goods_name, 
+      goods_category_id, sellid, gtm_create_time, 
+      gtm_modify_time)
+    values (#{id,jdbcType=INTEGER}, #{goodsNo,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, 
+      #{goodsCategoryId,jdbcType=INTEGER}, #{sellid,jdbcType=INTEGER}, #{gtmCreateTime,jdbcType=BIGINT}, 
+      #{gtmModifyTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.hlq.common.pojo.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsNo != null" >
+        goods_no,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsCategoryId != null" >
+        goods_category_id,
+      </if>
+      <if test="sellid != null" >
+        sellid,
+      </if>
+      <if test="gtmCreateTime != null" >
+        gtm_create_time,
+      </if>
+      <if test="gtmModifyTime != null" >
+        gtm_modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNo != null" >
+        #{goodsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCategoryId != null" >
+        #{goodsCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="sellid != null" >
+        #{sellid,jdbcType=INTEGER},
+      </if>
+      <if test="gtmCreateTime != null" >
+        #{gtmCreateTime,jdbcType=BIGINT},
+      </if>
+      <if test="gtmModifyTime != null" >
+        #{gtmModifyTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.hlq.common.pojo.Goods" >
+    update goods
+    <set >
+      <if test="goodsNo != null" >
+        goods_no = #{goodsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCategoryId != null" >
+        goods_category_id = #{goodsCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="sellid != null" >
+        sellid = #{sellid,jdbcType=INTEGER},
+      </if>
+      <if test="gtmCreateTime != null" >
+        gtm_create_time = #{gtmCreateTime,jdbcType=BIGINT},
+      </if>
+      <if test="gtmModifyTime != null" >
+        gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.hlq.common.pojo.Goods" >
+    update goods
+    set goods_no = #{goodsNo,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_category_id = #{goodsCategoryId,jdbcType=INTEGER},
+      sellid = #{sellid,jdbcType=INTEGER},
+      gtm_create_time = #{gtmCreateTime,jdbcType=BIGINT},
+      gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

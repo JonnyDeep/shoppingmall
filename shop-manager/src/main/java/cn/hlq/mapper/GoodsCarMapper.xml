@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hlq.dao.GoodsCarMapper" >
+  <resultMap id="BaseResultMap" type="cn.hlq.common.pojo.GoodsCar" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="gtm_create_time" property="gtmCreateTime" jdbcType="BIGINT" />
+    <result column="gtm_modify_time" property="gtmModifyTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, goods_id, num, status, gtm_create_time, gtm_modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goodscar
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goodscar
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.hlq.common.pojo.GoodsCar" >
+    insert into goodscar (id, uid, goods_id, 
+      num, status, gtm_create_time, 
+      gtm_modify_time)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{num,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{gtmCreateTime,jdbcType=BIGINT}, 
+      #{gtmModifyTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.hlq.common.pojo.GoodsCar" >
+    insert into goodscar
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="gtmCreateTime != null" >
+        gtm_create_time,
+      </if>
+      <if test="gtmModifyTime != null" >
+        gtm_modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="gtmCreateTime != null" >
+        #{gtmCreateTime,jdbcType=BIGINT},
+      </if>
+      <if test="gtmModifyTime != null" >
+        #{gtmModifyTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.hlq.common.pojo.GoodsCar" >
+    update goodscar
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="gtmCreateTime != null" >
+        gtm_create_time = #{gtmCreateTime,jdbcType=BIGINT},
+      </if>
+      <if test="gtmModifyTime != null" >
+        gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.hlq.common.pojo.GoodsCar" >
+    update goodscar
+    set uid = #{uid,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      gtm_create_time = #{gtmCreateTime,jdbcType=BIGINT},
+      gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

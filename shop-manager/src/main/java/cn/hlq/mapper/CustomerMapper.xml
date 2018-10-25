@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hlq.dao.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="cn.hlq.common.pojo.Customer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="TINYINT" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_iamge" property="headIamge" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="INTEGER" />
+    <result column="gtm_create_time" property="gtmCreateTime" jdbcType="BIGINT" />
+    <result column="gtm_modify_time" property="gtmModifyTime" jdbcType="BIGINT" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, sex, age, nick_name, head_iamge, category, gtm_create_time, gtm_modify_time, 
+    password
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectExamples" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from customer
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.hlq.common.pojo.Customer" >
+    insert into customer (id, username, sex, 
+      age, nick_name, head_iamge, 
+      category, gtm_create_time, gtm_modify_time, 
+      password)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, 
+      #{age,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{headIamge,jdbcType=VARCHAR}, 
+      #{category,jdbcType=INTEGER}, #{gtmCreateTime,jdbcType=BIGINT}, #{gtmModifyTime,jdbcType=BIGINT}, 
+      #{password,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.hlq.common.pojo.Customer" >
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="headIamge != null" >
+        head_iamge,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="gtmCreateTime != null" >
+        gtm_create_time,
+      </if>
+      <if test="gtmModifyTime != null" >
+        gtm_modify_time,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headIamge != null" >
+        #{headIamge,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=INTEGER},
+      </if>
+      <if test="gtmCreateTime != null" >
+        #{gtmCreateTime,jdbcType=BIGINT},
+      </if>
+      <if test="gtmModifyTime != null" >
+        #{gtmModifyTime,jdbcType=BIGINT},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.hlq.common.pojo.Customer" >
+    update customer
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headIamge != null" >
+        head_iamge = #{headIamge,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=INTEGER},
+      </if>
+      <if test="gtmCreateTime != null" >
+        gtm_create_time = #{gtmCreateTime,jdbcType=BIGINT},
+      </if>
+      <if test="gtmModifyTime != null" >
+        gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.hlq.common.pojo.Customer" >
+    update customer
+    set username = #{username,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      age = #{age,jdbcType=INTEGER},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      head_iamge = #{headIamge,jdbcType=VARCHAR},
+      category = #{category,jdbcType=INTEGER},
+      gtm_create_time = #{gtmCreateTime,jdbcType=BIGINT},
+      gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT},
+      password = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

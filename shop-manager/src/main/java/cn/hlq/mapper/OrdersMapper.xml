@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hlq.dao.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="cn.hlq.common.pojo.Orders" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="pay_price" property="payPrice" jdbcType="DOUBLE" />
+    <result column="is_pay" property="isPay" jdbcType="TINYINT" />
+    <result column="pay_time" property="payTime" jdbcType="BIGINT" />
+    <result column="is_ship" property="isShip" jdbcType="TINYINT" />
+    <result column="ship_time" property="shipTime" jdbcType="BIGINT" />
+    <result column="is_receipte" property="isReceipte" jdbcType="TINYINT" />
+    <result column="receipte_time" property="receipteTime" jdbcType="BIGINT" />
+    <result column="ship_no" property="shipNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="gtm_create_time" property="gtmCreateTime" jdbcType="BIGINT" />
+    <result column="gtm_modify_time" property="gtmModifyTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_no, uid, pay_price, is_pay, pay_time, is_ship, ship_time, is_receipte, 
+    receipte_time, ship_no, status, gtm_create_time, gtm_modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orders
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.hlq.common.pojo.Orders" >
+    insert into orders (id, order_no, uid, 
+      pay_price, is_pay, pay_time, 
+      is_ship, ship_time, is_receipte, 
+      receipte_time, ship_no, status, 
+      gtm_create_time, gtm_modify_time)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, 
+      #{payPrice,jdbcType=DOUBLE}, #{isPay,jdbcType=TINYINT}, #{payTime,jdbcType=BIGINT}, 
+      #{isShip,jdbcType=TINYINT}, #{shipTime,jdbcType=BIGINT}, #{isReceipte,jdbcType=TINYINT}, 
+      #{receipteTime,jdbcType=BIGINT}, #{shipNo,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{gtmCreateTime,jdbcType=BIGINT}, #{gtmModifyTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.hlq.common.pojo.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="payPrice != null" >
+        pay_price,
+      </if>
+      <if test="isPay != null" >
+        is_pay,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="isShip != null" >
+        is_ship,
+      </if>
+      <if test="shipTime != null" >
+        ship_time,
+      </if>
+      <if test="isReceipte != null" >
+        is_receipte,
+      </if>
+      <if test="receipteTime != null" >
+        receipte_time,
+      </if>
+      <if test="shipNo != null" >
+        ship_no,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="gtmCreateTime != null" >
+        gtm_create_time,
+      </if>
+      <if test="gtmModifyTime != null" >
+        gtm_modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="payPrice != null" >
+        #{payPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isPay != null" >
+        #{isPay,jdbcType=TINYINT},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=BIGINT},
+      </if>
+      <if test="isShip != null" >
+        #{isShip,jdbcType=TINYINT},
+      </if>
+      <if test="shipTime != null" >
+        #{shipTime,jdbcType=BIGINT},
+      </if>
+      <if test="isReceipte != null" >
+        #{isReceipte,jdbcType=TINYINT},
+      </if>
+      <if test="receipteTime != null" >
+        #{receipteTime,jdbcType=BIGINT},
+      </if>
+      <if test="shipNo != null" >
+        #{shipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="gtmCreateTime != null" >
+        #{gtmCreateTime,jdbcType=BIGINT},
+      </if>
+      <if test="gtmModifyTime != null" >
+        #{gtmModifyTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.hlq.common.pojo.Orders" >
+    update orders
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="payPrice != null" >
+        pay_price = #{payPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isPay != null" >
+        is_pay = #{isPay,jdbcType=TINYINT},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=BIGINT},
+      </if>
+      <if test="isShip != null" >
+        is_ship = #{isShip,jdbcType=TINYINT},
+      </if>
+      <if test="shipTime != null" >
+        ship_time = #{shipTime,jdbcType=BIGINT},
+      </if>
+      <if test="isReceipte != null" >
+        is_receipte = #{isReceipte,jdbcType=TINYINT},
+      </if>
+      <if test="receipteTime != null" >
+        receipte_time = #{receipteTime,jdbcType=BIGINT},
+      </if>
+      <if test="shipNo != null" >
+        ship_no = #{shipNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="gtmCreateTime != null" >
+        gtm_create_time = #{gtmCreateTime,jdbcType=BIGINT},
+      </if>
+      <if test="gtmModifyTime != null" >
+        gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.hlq.common.pojo.Orders" >
+    update orders
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      pay_price = #{payPrice,jdbcType=DOUBLE},
+      is_pay = #{isPay,jdbcType=TINYINT},
+      pay_time = #{payTime,jdbcType=BIGINT},
+      is_ship = #{isShip,jdbcType=TINYINT},
+      ship_time = #{shipTime,jdbcType=BIGINT},
+      is_receipte = #{isReceipte,jdbcType=TINYINT},
+      receipte_time = #{receipteTime,jdbcType=BIGINT},
+      ship_no = #{shipNo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      gtm_create_time = #{gtmCreateTime,jdbcType=BIGINT},
+      gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
