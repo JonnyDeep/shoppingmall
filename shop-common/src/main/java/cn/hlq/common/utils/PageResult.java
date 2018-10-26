@@ -10,11 +10,22 @@ public class PageResult<K> {
     private List<K> rows;
     private PageInfo<K> pageInfo;
 
+
     public PageResult(List<K> list)
     {
         setRows(list);
         pageInfo = new PageInfo<K>(list);
         setTotal(pageInfo.getTotal());
+    }
+
+    public Integer getPageCount()
+    {
+        return pageInfo==null?0:pageInfo.getPages();
+    }
+
+    public Integer getPageNum()
+    {
+        return pageInfo==null?0:pageInfo.getPageNum();
     }
 
     public long getTotal(){

@@ -7,11 +7,12 @@
     <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
     <result column="goods_category_id" property="goodsCategoryId" jdbcType="INTEGER" />
     <result column="sellid" property="sellid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
     <result column="gtm_create_time" property="gtmCreateTime" jdbcType="BIGINT" />
     <result column="gtm_modify_time" property="gtmModifyTime" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, goods_no, goods_name, goods_category_id, sellid, gtm_create_time, gtm_modify_time
+    id, goods_no, goods_name, goods_category_id, sellid, status, gtm_create_time, gtm_modify_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -25,11 +26,11 @@
   </delete>
   <insert id="insert" parameterType="cn.hlq.common.pojo.Goods" >
     insert into goods (id, goods_no, goods_name, 
-      goods_category_id, sellid, gtm_create_time, 
-      gtm_modify_time)
+      goods_category_id, sellid, status, 
+      gtm_create_time, gtm_modify_time)
     values (#{id,jdbcType=INTEGER}, #{goodsNo,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, 
-      #{goodsCategoryId,jdbcType=INTEGER}, #{sellid,jdbcType=INTEGER}, #{gtmCreateTime,jdbcType=BIGINT}, 
-      #{gtmModifyTime,jdbcType=BIGINT})
+      #{goodsCategoryId,jdbcType=INTEGER}, #{sellid,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
+      #{gtmCreateTime,jdbcType=BIGINT}, #{gtmModifyTime,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="cn.hlq.common.pojo.Goods" >
     insert into goods
@@ -48,6 +49,9 @@
       </if>
       <if test="sellid != null" >
         sellid,
+      </if>
+      <if test="status != null" >
+        status,
       </if>
       <if test="gtmCreateTime != null" >
         gtm_create_time,
@@ -72,6 +76,9 @@
       <if test="sellid != null" >
         #{sellid,jdbcType=INTEGER},
       </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
       <if test="gtmCreateTime != null" >
         #{gtmCreateTime,jdbcType=BIGINT},
       </if>
@@ -95,6 +102,9 @@
       <if test="sellid != null" >
         sellid = #{sellid,jdbcType=INTEGER},
       </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
       <if test="gtmCreateTime != null" >
         gtm_create_time = #{gtmCreateTime,jdbcType=BIGINT},
       </if>
@@ -110,6 +120,7 @@
       goods_name = #{goodsName,jdbcType=VARCHAR},
       goods_category_id = #{goodsCategoryId,jdbcType=INTEGER},
       sellid = #{sellid,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
       gtm_create_time = #{gtmCreateTime,jdbcType=BIGINT},
       gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}

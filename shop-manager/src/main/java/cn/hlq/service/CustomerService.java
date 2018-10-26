@@ -1,7 +1,6 @@
 package cn.hlq.service;
 
 import cn.hlq.common.pojo.Customer;
-import org.springframework.stereotype.Service;
 
 /**
  * @author huangliqun

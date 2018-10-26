@@ -1,7 +1,7 @@
 package cn.hlq.service.impl;
 
-import cn.hlq.dao.CustomerMapper;
 import cn.hlq.common.pojo.Customer;
+import cn.hlq.dao.CustomerMapper;
 import cn.hlq.service.CustomerService;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;

@@ -1,6 +1,5 @@
 package cn.hlq.controller;
 
-import cn.hlq.common.pojo.Customer;
 import cn.hlq.service.CustomerService;
 import cn.hlq.service.TestService;
 import org.apache.logging.log4j.LogManager;

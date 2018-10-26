@@ -27,7 +27,7 @@ public class Url {
         UsernamePasswordToken token = new UsernamePasswordToken(userName,passwd);
         try {
             subject.login(token);
-
+            subject.hasRole("user:add");
         }catch (UnknownAccountException e){
             e.printStackTrace();
             System.out.println("用户名错误");

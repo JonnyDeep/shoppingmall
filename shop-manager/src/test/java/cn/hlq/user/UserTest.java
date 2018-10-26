@@ -1,11 +1,10 @@
 package cn.hlq.user;
 
-import cn.hlq.dao.CustomerMapper;
 import cn.hlq.common.pojo.Customer;
+import cn.hlq.dao.CustomerMapper;
 import cn.hlq.common.utils.MD5Utils;
 import cn.hlq.common.utils.PageResult;
 import cn.hlq.service.CustomerService;
-import cn.hlq.service.impl.CustomerServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;

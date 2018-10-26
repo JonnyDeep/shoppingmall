@@ -1,8 +1,6 @@
 package cn.hlq.common.pojo;
 
-import java.io.Serializable;
-
-public class Customer implements Serializable {
+public class Customer {
     private Integer id;
 
     private String username;

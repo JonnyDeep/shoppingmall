@@ -1,15 +1,15 @@
 package cn.hlq.common.pojo;
 
-public class Goods {
+public class Ordergoods {
     private Integer id;
 
-    private String goodsNo;
+    private Integer orderId;
 
-    private String goodsName;
+    private Integer goodsId;
 
-    private Integer goodsCategoryId;
+    private Integer goodsNum;
 
-    private Integer sellid;
+    private Double goodsPrice;
 
     private Byte status;
 
@@ -25,36 +25,36 @@ public class Goods {
         this.id = id;
     }
 
-    public String getGoodsNo() {
-        return goodsNo;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setGoodsNo(String goodsNo) {
-        this.goodsNo = goodsNo == null ? null : goodsNo.trim();
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
-    public String getGoodsName() {
-        return goodsName;
+    public Integer getGoodsId() {
+        return goodsId;
     }
 
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName == null ? null : goodsName.trim();
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
     }
 
-    public Integer getGoodsCategoryId() {
-        return goodsCategoryId;
+    public Integer getGoodsNum() {
+        return goodsNum;
     }
 
-    public void setGoodsCategoryId(Integer goodsCategoryId) {
-        this.goodsCategoryId = goodsCategoryId;
+    public void setGoodsNum(Integer goodsNum) {
+        this.goodsNum = goodsNum;
     }
 
-    public Integer getSellid() {
-        return sellid;
+    public Double getGoodsPrice() {
+        return goodsPrice;
     }
 
-    public void setSellid(Integer sellid) {
-        this.sellid = sellid;
+    public void setGoodsPrice(Double goodsPrice) {
+        this.goodsPrice = goodsPrice;
     }
 
     public Byte getStatus() {
