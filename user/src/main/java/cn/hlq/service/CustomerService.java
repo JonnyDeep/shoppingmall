@@ -1,5 +1,7 @@
 package cn.hlq.service;
 
+import cn.hlq.common.pojo.Customer;
+
 public interface CustomerService {
     /**
      * insert a user into customer table

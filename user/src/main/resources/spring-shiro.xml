@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <import resource="classpath:spring-redis.xml"/>
+
+    <aop:config proxy-target-class="true"></aop:config>
 
 
 
@@ -28,6 +33,48 @@
     </bean>
     <bean id ="advisorAutoProxyCreator" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" >
         <property name="proxyTargetClass" value="true"></property>
+    </bean>
+
+
+
+    <!--sessionId 生成器-->
+    <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+    <!--session 创建、删除、查询，改-->
+    <bean id="myJedisShiroSessionRepository" class="cn.hlq.common.utils.session.MyJedisShiroSessionRepository">
+        <property name="redisUtil" ref="redisUtil"/>
+    </bean>
+    <!--session 的监听生命周期-->
+    <bean id="customShiroSessionDao" class="cn.hlq.common.utils.session.CustomShiroSessionDao">
+        <property name="jedisShiroSessionRepository" ref="myJedisShiroSessionRepository"/>
+        <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+    </bean>
+
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="vvv_shopmall"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="-1"/>
+        <property name="name" value=".shopmall.com"/>
+    </bean>
+
+   <bean id="customerSessionListener" class="cn.hlq.common.utils.session.CustomerSessionListener"/>
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionValidationInterval" value="1800000"/>
+        <property name="globalSessionTimeout" value="1800000"/>
+        <property name="sessionDAO" ref="customShiroSessionDao"/>
+        <property name="sessionListeners">
+            <list>
+                <ref bean="customerSessionListener"/>
+            </list>
+        </property>
+        <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+        <property name="sessionValidationSchedulerEnabled" value="true"/>
+        <property name="deleteInvalidSessions" value="true"/>
+        <property name="sessionIdCookie" ref="sessionIdCookie"/>
+    </bean>
+
+    <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+        <property name="interval" value="3600000"/>
+        <property name="sessionManager" ref="sessionManager"/>
     </bean>
 
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">

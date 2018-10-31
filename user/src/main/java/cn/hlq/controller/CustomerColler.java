@@ -1,9 +1,11 @@
 package cn.hlq.controller;
 
+import cn.hlq.common.pojo.Customer;
 import cn.hlq.service.CustomerService;
 import cn.hlq.service.TestService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,10 @@ public class CustomerColler {
     CustomerService customerService;
     @Autowired
     TestService testService;
+
+
+
+    @RequiresRoles("customer")
     @RequestMapping(value = "/getCustomer",method = RequestMethod.GET)
     public @ResponseBody Customer getCustomer(@RequestParam Integer id)
     {

@@ -1,6 +1,5 @@
 package cn.hlq.common.utils;
 
-import com.sun.deploy.util.StringUtils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

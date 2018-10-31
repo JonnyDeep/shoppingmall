@@ -32,7 +32,23 @@
     </bean>
 
     <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-    <context:component-scan base-package="cn.hlq.controller"/>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView" value="/WEB-INF/views/index.jsp"/>
+        <property name="exceptionAttribute" value="ex"/>
+        <property name="exceptionMappings">
+            <props>
+                <prop key="cn.hlq.common.utils.Exception.CustomException">index</prop>
+                <prop key="org.apache.shiro.authz.UnauthenticatedException">index</prop>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">index</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <!--<aop:aspectj-autoproxy></aop:aspectj-autoproxy>非常重要-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    <context:component-scan base-package="cn.hlq"/>
 
 
 </beans>
