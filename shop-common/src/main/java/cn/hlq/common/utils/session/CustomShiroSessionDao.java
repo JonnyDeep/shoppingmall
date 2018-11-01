@@ -6,6 +6,7 @@ import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
 
 import java.io.Serializable;
+import java.sql.SQLOutput;
 import java.util.Collection;
 
 public class CustomShiroSessionDao extends AbstractSessionDAO {
@@ -20,7 +21,11 @@ public class CustomShiroSessionDao extends AbstractSessionDAO {
     }
 
     protected Serializable doCreate(Session session) {
-        Serializable sessionId = session.getId();
+        if(session==null){
+            System.out.println("session is null");
+        }
+        Serializable sessionId = generateSessionId(session);
+        System.out.println("doCreate session:"+sessionId);
         this.assignSessionId(session,sessionId);
         getJedisShiroSessionRepository().saveSession(session);
         return sessionId;

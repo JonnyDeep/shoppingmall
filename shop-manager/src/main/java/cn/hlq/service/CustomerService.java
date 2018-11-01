@@ -43,4 +43,11 @@ public interface CustomerService {
     public int updareCustomerBySelective(Customer customer);
 
 
+    /**
+     *
+     * @param customer
+     * @return
+     */
+    public Customer queryCustomerByUserName(Customer customer);
+
 }

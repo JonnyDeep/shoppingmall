@@ -1,6 +1,7 @@
 package cn.hlq.controller;
 
 import cn.hlq.common.pojo.Customer;
+import cn.hlq.common.utils.JsonResult;
 import cn.hlq.service.CustomerService;
 import cn.hlq.service.TestService;
 import org.apache.logging.log4j.LogManager;
@@ -26,14 +27,24 @@ public class CustomerColler {
 
 
     @RequiresRoles("customer")
-    @RequestMapping(value = "/getCustomer",method = RequestMethod.GET)
-    public @ResponseBody Customer getCustomer(@RequestParam Integer id)
+    @RequestMapping(value = "/getCustomerInfo",method = RequestMethod.GET)
+    public @ResponseBody JsonResult getCustomerInfo(@RequestParam Integer id)
     {
         logger.info("id:{}",id);
         Customer customer = customerService.selectCustomerById(id);
         logger.info("customer:{}",customer);
         logger.info("testService.getName:{}",testService.getName());
-        return customer;
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setData(customer);
+        return jsonResult;
     }
+
+    @RequestMapping(value = "/delectCustomer",method = RequestMethod.DELETE)
+    public @ResponseBody JsonResult deleteCustomer(@RequestParam Integer id)
+    {
+        JsonResult jsonResult = new JsonResult();
+        return jsonResult;
+    }
+
 
 }

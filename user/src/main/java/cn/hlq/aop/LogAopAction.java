@@ -62,7 +62,7 @@ public class LogAopAction {
                 String sysmethod = systemLog.methods();
                 logger.info("----------- module:{},method:{}",sysmodule,sysmethod);
                 try{
-                    retVal = pjp.proceed();
+                    object = pjp.proceed();
                     Date end = new Date();
                     String endtime = Datetils.Long2DateFormat(end.getTime());
                     logger.info("----------- endtime:{}",endtime);
@@ -71,6 +71,7 @@ public class LogAopAction {
                     String endtime = Datetils.Long2DateFormat(end.getTime());
                     logger.info("----------- endtime:{}",endtime);
                     logger.info("----------- 执行失败");
+                    ex.printStackTrace();
                     throw new CustomException("执行失败");
                 }
             }else {

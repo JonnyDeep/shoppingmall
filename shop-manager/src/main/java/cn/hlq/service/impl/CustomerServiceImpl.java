@@ -2,6 +2,7 @@ package cn.hlq.service.impl;
 
 import cn.hlq.common.pojo.Customer;
 import cn.hlq.dao.CustomerMapper;
+import cn.hlq.dao.CustomerMapperVol;
 import cn.hlq.service.CustomerService;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
@@ -15,6 +16,9 @@ public class CustomerServiceImpl implements CustomerService {
     private static Logger logger = LogManager.getLogger(CustomerServiceImpl.class);
     @Autowired
     CustomerMapper customerMapper;
+
+    @Autowired
+    CustomerMapperVol customerMapperVol;
     public int insertCustomer(Customer customer) {
         logger.info("customer:{}",customer);
         return customerMapper.insert(customer);
@@ -37,5 +41,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     public int updareCustomerBySelective(Customer customer) {
         return customerMapper.updateByPrimaryKeySelective(customer);
+    }
+
+    public Customer queryCustomerByUserName(Customer customer) {
+        return customerMapperVol.queryCustomerByUserName(customer);
     }
 }

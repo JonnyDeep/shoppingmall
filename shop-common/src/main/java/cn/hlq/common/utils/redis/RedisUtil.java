@@ -43,11 +43,13 @@ public class RedisUtil {
     {
         try{
             if(key!=null&&null!=value){
-                redisTemplate.opsForValue().set(key,value,exprieTime);
+                System.out.println("key---:"+key);
+                redisTemplate.opsForValue().set(key,value);
                 return true;
 
             }
         }catch (Exception ex){
+            ex.printStackTrace();
             throw new CustomException("存储redis出错");
         }
         return false;

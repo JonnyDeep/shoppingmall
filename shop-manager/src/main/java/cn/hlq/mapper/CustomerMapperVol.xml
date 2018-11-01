@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hlq.dao.CustomerMapperVol">
+    <resultMap id="BaseResultMap" type="cn.hlq.common.pojo.Customer" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="TINYINT" />
+        <result column="age" property="age" jdbcType="INTEGER" />
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+        <result column="head_iamge" property="headIamge" jdbcType="VARCHAR" />
+        <result column="category" property="category" jdbcType="INTEGER" />
+        <result column="gtm_create_time" property="gtmCreateTime" jdbcType="BIGINT" />
+        <result column="gtm_modify_time" property="gtmModifyTime" jdbcType="BIGINT" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, username, sex, age, nick_name, head_iamge, category, gtm_create_time, gtm_modify_time,
+    password
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from customer
+        where username = #{customer.username}
+    </select>
+</mapper>

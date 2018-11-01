@@ -1,5 +1,7 @@
 package cn.hlq.auth;
 
+import cn.hlq.common.pojo.Customer;
+import cn.hlq.service.CustomerService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
@@ -10,6 +12,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,8 +28,10 @@ public class CustomRealm extends AuthorizingRealm {
      * @param principalCollection
      * @return
      */
+    @Autowired
+    CustomerService customerService;
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        logger.info("Author");
+        logger.info("--------授权-------");
         String userName = (String) principalCollection.getPrimaryPrincipal();
         List<String> permessionList = new ArrayList<String>();
         permessionList.add("user:add");
@@ -49,13 +54,16 @@ public class CustomRealm extends AuthorizingRealm {
      * @throws AuthenticationException
      */
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        logger.info("Authen");
+        logger.info("------认证-----");
         String userName = (String)authenticationToken.getPrincipal();
         if("".equals(userName))
         {
             return null;
         }
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userName,"123456",this.getName());
+        Customer temp = new Customer();
+        temp.setUsername(userName);
+        temp = customerService.queryCustomerByUserName(temp);
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userName,temp.getPassword(),this.getName());
         return info;
     }
 }
