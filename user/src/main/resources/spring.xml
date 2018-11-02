@@ -10,4 +10,6 @@
     <dubbo:registry protocol="zookeeper" address="zookeeper://127.0.0.1:2181"/>
     <dubbo:reference interface="cn.hlq.service.TestService" id="testService"/>
     <dubbo:reference interface="cn.hlq.service.CustomerService" id="customerService"/>
+    <dubbo:reference interface="cn.hlq.service.GoodsService" id="goodsService"/>
+
 </beans>

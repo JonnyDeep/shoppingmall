@@ -2,16 +2,18 @@ package cn.hlq.common.pojo;
 
 import java.io.Serializable;
 
-public class GoodsCar implements Serializable {
+public class Sku implements Serializable {
     private Integer id;
-
-    private Integer uid;
 
     private Integer goodsId;
 
-    private Integer num;
+    private String skuProperties;
 
-    private Byte status;
+    private Double price;
+
+    private Integer stock;
+
+    private Integer skuSellCount;
 
     private Long gtmCreateTime;
 
@@ -25,14 +27,6 @@ public class GoodsCar implements Serializable {
         this.id = id;
     }
 
-    public Integer getUid() {
-        return uid;
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
-
     public Integer getGoodsId() {
         return goodsId;
     }
@@ -41,20 +35,36 @@ public class GoodsCar implements Serializable {
         this.goodsId = goodsId;
     }
 
-    public Integer getNum() {
-        return num;
+    public String getSkuProperties() {
+        return skuProperties;
     }
 
-    public void setNum(Integer num) {
-        this.num = num;
+    public void setSkuProperties(String skuProperties) {
+        this.skuProperties = skuProperties == null ? null : skuProperties.trim();
     }
 
-    public Byte getStatus() {
-        return status;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setStatus(Byte status) {
-        this.status = status;
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public Integer getSkuSellCount() {
+        return skuSellCount;
+    }
+
+    public void setSkuSellCount(Integer skuSellCount) {
+        this.skuSellCount = skuSellCount;
     }
 
     public Long getGtmCreateTime() {

@@ -1,6 +1,8 @@
 package cn.hlq.common.pojo;
 
-public class Ordergoods {
+import java.io.Serializable;
+
+public class Ordergoods implements Serializable {
     private Integer id;
 
     private Integer orderId;

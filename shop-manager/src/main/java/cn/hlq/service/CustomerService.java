@@ -2,6 +2,8 @@ package cn.hlq.service;
 
 import cn.hlq.common.pojo.Customer;
 
+import java.util.List;
+
 /**
  * @author huangliqun
  *
@@ -49,5 +51,12 @@ public interface CustomerService {
      * @return
      */
     public Customer queryCustomerByUserName(Customer customer);
+
+    /**
+     *
+     * @param
+     * @return
+     */
+     public List<Customer> selectExamples();
 
 }

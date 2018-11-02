@@ -1,6 +1,8 @@
 package cn.hlq.common.pojo;
 
-public class Discussion {
+import java.io.Serializable;
+
+public class Discussion implements Serializable {
     private Integer id;
 
     private Integer uid;

@@ -70,40 +70,76 @@
         <!--tableName:指定了表名
             domainObjectName:指定了实体类的名称
         -->
-        <table tableName="goods" domainObjectName="Goods"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-         </table>
-        <table tableName="goodscar" domainObjectName="GoodsCar"
+        <!--<table tableName="goods" domainObjectName="Goods"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+         <!--</table>-->
+        <!--<table tableName="goodscar" domainObjectName="GoodsCar"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="customer" domainObjectName="Customer"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="discussion" domainObjectName="Discussion"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="orders" domainObjectName="Orders"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="ordergoods" domainObjectName="Ordergoods"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <table tableName="goodscategory" domainObjectName="GoodsCategory"
+            enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="sku" domainObjectName="Sku"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
 
-        <table tableName="customer" domainObjectName="Customer"
+        <table tableName="propertyname" domainObjectName="PropertyName"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
 
-        <table tableName="discussion" domainObjectName="Discussion"
+        <table tableName="propertyvalue" domainObjectName="PropertyValue"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
 
-        <table tableName="orders" domainObjectName="Orders"
+        <table tableName="goodsproperty" domainObjectName="GoodsProperty"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
 
-        <table tableName="ordergoods" domainObjectName="Ordergoods"
+        <table tableName="goodspropertyfilter" domainObjectName="GoodspPropertyFilter"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
+
 
     </context>
 </generatorConfiguration>

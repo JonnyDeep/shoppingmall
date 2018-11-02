@@ -10,6 +10,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("customerService")
 public class CustomerServiceImpl implements CustomerService {
 
@@ -45,5 +47,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     public Customer queryCustomerByUserName(Customer customer) {
         return customerMapperVol.queryCustomerByUserName(customer);
+    }
+
+    public List<Customer> selectExamples() {
+        return customerMapper.selectExamples();
     }
 }

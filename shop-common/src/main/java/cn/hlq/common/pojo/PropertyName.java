@@ -2,16 +2,14 @@ package cn.hlq.common.pojo;
 
 import java.io.Serializable;
 
-public class GoodsCar implements Serializable {
+public class PropertyName implements Serializable{
     private Integer id;
 
-    private Integer uid;
+    private String name;
 
-    private Integer goodsId;
+    private Integer goodsCategoryId;
 
-    private Integer num;
-
-    private Byte status;
+    private Integer parentCategoryId;
 
     private Long gtmCreateTime;
 
@@ -25,36 +23,28 @@ public class GoodsCar implements Serializable {
         this.id = id;
     }
 
-    public Integer getUid() {
-        return uid;
+    public String getName() {
+        return name;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
-    public Integer getGoodsId() {
-        return goodsId;
+    public Integer getGoodsCategoryId() {
+        return goodsCategoryId;
     }
 
-    public void setGoodsId(Integer goodsId) {
-        this.goodsId = goodsId;
+    public void setGoodsCategoryId(Integer goodsCategoryId) {
+        this.goodsCategoryId = goodsCategoryId;
     }
 
-    public Integer getNum() {
-        return num;
+    public Integer getParentCategoryId() {
+        return parentCategoryId;
     }
 
-    public void setNum(Integer num) {
-        this.num = num;
-    }
-
-    public Byte getStatus() {
-        return status;
-    }
-
-    public void setStatus(Byte status) {
-        this.status = status;
+    public void setParentCategoryId(Integer parentCategoryId) {
+        this.parentCategoryId = parentCategoryId;
     }
 
     public Long getGtmCreateTime() {

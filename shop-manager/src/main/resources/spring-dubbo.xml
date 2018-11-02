@@ -8,7 +8,8 @@
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
     <dubbo:protocol name="dubbo" port="29014"/>
     <dubbo:service interface="cn.hlq.service.CustomerService" ref="customerService" />
-    <dubbo:service interface="cn.hlq.service.DiscussionService" ref="discussionService"  />
+    <dubbo:service interface="cn.hlq.service.DiscussionService" ref="discussionService"/>
+    <dubbo:service interface="cn.hlq.service.GoodsService" ref="goodsService"/>
     <dubbo:service interface="cn.hlq.service.TestService" ref="testService" />
 
 </beans>
