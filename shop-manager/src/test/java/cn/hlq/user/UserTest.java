@@ -32,12 +32,15 @@ public class UserTest {
     @Autowired
     CustomerService customerService;
 
+
+
     @Test
     public void getUser()
     {
         logger.info(customerService);
         logger.info("begin {}","getUser");
         Customer customer=customerMapper.selectByPrimaryKey(1);
+        logger.info(customerService.queryCustomerByUserName(customer));
         Gson gson = new Gson();
         logger.info(gson.toJson(customer));
     }

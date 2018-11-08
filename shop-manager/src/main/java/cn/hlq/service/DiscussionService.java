@@ -21,4 +21,11 @@ public interface DiscussionService {
      * @return
      */
     public List<Discussion> queryDiscussion(Integer goodId);
+
+    /**
+     * query goods all discussions
+     * @param goodsId
+     * @return
+     */
+    public Integer queryDiscussionCountByGoodsId(Integer goodsId);
 }

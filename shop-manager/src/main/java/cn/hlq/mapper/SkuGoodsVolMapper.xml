@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hlq.dao.SkuGoodsVolMapper">
+    <resultMap id="BaseResultMap" type="cn.hlq.common.pojo.Sku" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+        <result column="sku_properties" property="skuProperties" jdbcType="VARCHAR" />
+        <result column="price" property="price" jdbcType="DOUBLE" />
+        <result column="stock" property="stock" jdbcType="INTEGER" />
+        <result column="sku_sell_count" property="skuSellCount" jdbcType="INTEGER" />
+        <result column="gtm_create_time" property="gtmCreateTime" jdbcType="BIGINT" />
+        <result column="gtm_modify_time" property="gtmModifyTime" jdbcType="BIGINT" />
+    </resultMap>
+
+    <resultMap id="SkuGoodVolMap" type="cn.hlq.common.pojo.SkuGoodsVol">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="goodsId" property="goodsId" jdbcType="INTEGER"/>
+        <result column="goodsName" property="goodsName" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="DOUBLE"/>
+        <result column="stock" property="stock" jdbcType="INTEGER"/>
+        <result column="sizeName" property="sizeName" jdbcType="VARCHAR"/>
+        <result column="color" property="color" jdbcType="VARCHAR"/>
+        <result column="colorValue" property="colorValue" jdbcType="VARCHAR"/>
+        <result column="brandName" property="brandName" jdbcType="VARCHAR"/>
+        <result column="brandValue" property="brandValue" jdbcType="VARCHAR"/>
+        <result column="sellid" property="sellId" jdbcType="INTEGER"/>
+        <collection property="url" ofType="string" javaType="list">
+            <result column="url"/>
+        </collection>
+        <collection property="zoomUrl" ofType="string" javaType="list">
+            <result column="zoomUrl"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    id, goods_id, sku_properties, price, stock, sku_sell_count, gtm_create_time, gtm_modify_time
+  </sql>
+    <select id="queryGoods" resultMap="SkuGoodVolMap">
+        SELECT
+            sku.id as id,
+	        sku.goods_id as goodsId,
+            goods.goods_name AS goodsName,
+            sku.price AS price,
+            sku.stock AS stock,
+            propertyname.NAME AS sizeName,
+            propertyvalue.VALUE AS sizeValue,
+            size.NAME AS color,
+            sizevalue.`value` AS colorValue,
+            brand.`name` AS brandName,
+            brandName.`value` AS brandValue
+        FROM
+            sku
+            LEFT JOIN propertyname size ON SUBSTRING_INDEX( SUBSTRING_INDEX( SUBSTRING_INDEX( sku.sku_properties, ',', 2 ), ",", 1 ), ':', 1 ) = size.id
+            LEFT JOIN propertyvalue sizevalue ON SUBSTRING_INDEX( SUBSTRING_INDEX( SUBSTRING_INDEX( sku.sku_properties, ',', 2 ), ",", 1 ), ':',- 1 ) = sizevalue.id
+            LEFT JOIN propertyname ON SUBSTRING_INDEX( SUBSTRING_INDEX( SUBSTRING_INDEX( sku.sku_properties, ',', 2 ), ",",- 1 ), ':', 1 ) = propertyname.id
+            LEFT JOIN propertyvalue ON SUBSTRING_INDEX( SUBSTRING_INDEX( SUBSTRING_INDEX( sku.sku_properties, ',', 2 ), ",",- 1 ), ':',- 1 ) = propertyvalue.id
+            LEFT JOIN propertyname brand ON SUBSTRING_INDEX( SUBSTRING_INDEX( SUBSTRING_INDEX( sku.sku_properties, ',',- 1 ), ",", 1 ), ':', 1 ) = brand.id
+            LEFT JOIN propertyvalue AS brandName ON SUBSTRING_INDEX( SUBSTRING_INDEX( SUBSTRING_INDEX( sku.sku_properties, ',',- 1 ), ",", 1 ), ':',- 1 ) = brandName.id
+            LEFT JOIN goods ON sku.goods_id = goods.id
+    </select>
+
+    <select id="querySearchGoodsBy" resultMap="SkuGoodVolMap">
+       SELECT DISTINCT
+            g.id AS goodsId,
+            g.goods_name AS goodsName,
+            g.sellid,
+            s.price AS price,
+            gi.url,
+            gzi.url AS zoomUrl
+        FROM
+            goods AS g
+            LEFT JOIN discussion AS d ON g.id = d.goods_id
+            LEFT JOIN sku AS s ON g.id = s.goods_id
+            LEFT JOIN goodsimage AS gi ON g.id = gi.goods_id
+            LEFT JOIN goodszoomimage AS gzi ON gi.id = gzi.goodsImage_id
+        WHERE
+            g.`status` = 1
+    </select>
+</mapper>

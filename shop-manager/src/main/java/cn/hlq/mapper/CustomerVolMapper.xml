@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.hlq.dao.CustomerMapperVol">
+<mapper namespace="cn.hlq.dao.CustomerVolMapper">
     <resultMap id="BaseResultMap" type="cn.hlq.common.pojo.Customer" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="username" property="username" jdbcType="VARCHAR" />
@@ -19,7 +19,7 @@
     id, username, sex, age, nick_name, head_iamge, category, gtm_create_time, gtm_modify_time,
     password
   </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="queryCustomerByUserName" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from customer

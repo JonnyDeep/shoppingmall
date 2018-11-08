@@ -3,13 +3,18 @@ package cn.hlq.common.utils;
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 
+import java.io.Serializable;
+import java.security.PublicKey;
 import java.util.List;
 
-public class PageResult<K> {
+public class PageResult<K> implements Serializable {
     private long total;
     private List<K> rows;
     private PageInfo<K> pageInfo;
 
+    public PageResult(){
+
+    }
 
     public PageResult(List<K> list)
     {

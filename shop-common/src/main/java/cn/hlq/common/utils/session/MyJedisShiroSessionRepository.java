@@ -7,6 +7,7 @@ import org.apache.shiro.session.Session;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 public class MyJedisShiroSessionRepository implements SessionRepository {
 
@@ -15,6 +16,7 @@ public class MyJedisShiroSessionRepository implements SessionRepository {
     private static final int SESSION_VAL_TIME_SPAN = 18000;
     private static final int DB_INDEX = 1;
     private RedisUtil redisUtil;
+    private static Logger logger = Logger.getLogger(MyJedisShiroSessionRepository.class.getName());
     public void saveSession(Session session) {
         if(session==null||session.getId()==null){
             throw new NullPointerException("session is empty");
@@ -23,6 +25,7 @@ public class MyJedisShiroSessionRepository implements SessionRepository {
         try{
             String key = buildRedisSessionKey(session.getId());
             byte[] value = SerializeUtil.serializeObject(session);
+            logger.info("---->session:"+session);
             long sessionTimeOut = session.getTimeout()/1000;
             Long expireTime = sessionTimeOut + SESSION_VAL_TIME_SPAN + (5*60);
             getRedisUtil().set(key,value,expireTime);

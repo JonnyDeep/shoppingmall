@@ -22,4 +22,8 @@ public class DiscussionServiceImpl implements DiscussionService {
     public List<Discussion> queryDiscussion(Integer goodId) {
        return discussionVolMapper.selectByGoodsId(goodId);
     }
+
+    public Integer queryDiscussionCountByGoodsId(Integer goodsId){
+        return discussionMapper.queryDiscussionCountByGoodsId(goodsId);
+    }
 }

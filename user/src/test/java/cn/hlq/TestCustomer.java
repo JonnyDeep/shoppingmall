@@ -20,5 +20,9 @@ public class TestCustomer {
     public void test(){
         List<Customer> list = customerService.selectExamples();
         list.stream().forEach(System.out::println);
+        Customer customer = new Customer();
+        customer.setUsername("lion");
+        Customer c = customerService.queryCustomerByUserName(customer);
+        System.out.println(c.toString());
     }
 }

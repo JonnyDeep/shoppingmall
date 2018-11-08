@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.hlq.dao.SkuMapper" >
-  <resultMap id="BaseResultMap" type="cn.hlq.common.pojo.Sku" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
-    <result column="sku_properties" property="skuProperties" jdbcType="VARCHAR" />
-    <result column="price" property="price" jdbcType="DOUBLE" />
-    <result column="stock" property="stock" jdbcType="INTEGER" />
-    <result column="sku_sell_count" property="skuSellCount" jdbcType="INTEGER" />
-    <result column="gtm_create_time" property="gtmCreateTime" jdbcType="BIGINT" />
-    <result column="gtm_modify_time" property="gtmModifyTime" jdbcType="BIGINT" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hlq.dao.SkuMapper">
+  <resultMap id="BaseResultMap" type="cn.hlq.common.pojo.Sku">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="sku_properties" jdbcType="VARCHAR" property="skuProperties" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="sku_sell_count" jdbcType="INTEGER" property="skuSellCount" />
+    <result column="gtm_create_time" jdbcType="BIGINT" property="gtmCreateTime" />
+    <result column="gtm_modify_time" jdbcType="BIGINT" property="gtmModifyTime" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, goods_id, sku_properties, price, stock, sku_sell_count, gtm_create_time, gtm_modify_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sku
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sku
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.hlq.common.pojo.Sku" >
+  <insert id="insert" parameterType="cn.hlq.common.pojo.Sku">
     insert into sku (id, goods_id, sku_properties, 
       price, stock, sku_sell_count, 
       gtm_create_time, gtm_modify_time)
@@ -32,89 +32,89 @@
       #{price,jdbcType=DOUBLE}, #{stock,jdbcType=INTEGER}, #{skuSellCount,jdbcType=INTEGER}, 
       #{gtmCreateTime,jdbcType=BIGINT}, #{gtmModifyTime,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="cn.hlq.common.pojo.Sku" >
+  <insert id="insertSelective" parameterType="cn.hlq.common.pojo.Sku">
     insert into sku
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="goodsId != null" >
+      <if test="goodsId != null">
         goods_id,
       </if>
-      <if test="skuProperties != null" >
+      <if test="skuProperties != null">
         sku_properties,
       </if>
-      <if test="price != null" >
+      <if test="price != null">
         price,
       </if>
-      <if test="stock != null" >
+      <if test="stock != null">
         stock,
       </if>
-      <if test="skuSellCount != null" >
+      <if test="skuSellCount != null">
         sku_sell_count,
       </if>
-      <if test="gtmCreateTime != null" >
+      <if test="gtmCreateTime != null">
         gtm_create_time,
       </if>
-      <if test="gtmModifyTime != null" >
+      <if test="gtmModifyTime != null">
         gtm_modify_time,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="goodsId != null" >
+      <if test="goodsId != null">
         #{goodsId,jdbcType=INTEGER},
       </if>
-      <if test="skuProperties != null" >
+      <if test="skuProperties != null">
         #{skuProperties,jdbcType=VARCHAR},
       </if>
-      <if test="price != null" >
+      <if test="price != null">
         #{price,jdbcType=DOUBLE},
       </if>
-      <if test="stock != null" >
+      <if test="stock != null">
         #{stock,jdbcType=INTEGER},
       </if>
-      <if test="skuSellCount != null" >
+      <if test="skuSellCount != null">
         #{skuSellCount,jdbcType=INTEGER},
       </if>
-      <if test="gtmCreateTime != null" >
+      <if test="gtmCreateTime != null">
         #{gtmCreateTime,jdbcType=BIGINT},
       </if>
-      <if test="gtmModifyTime != null" >
+      <if test="gtmModifyTime != null">
         #{gtmModifyTime,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.hlq.common.pojo.Sku" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.hlq.common.pojo.Sku">
     update sku
-    <set >
-      <if test="goodsId != null" >
+    <set>
+      <if test="goodsId != null">
         goods_id = #{goodsId,jdbcType=INTEGER},
       </if>
-      <if test="skuProperties != null" >
+      <if test="skuProperties != null">
         sku_properties = #{skuProperties,jdbcType=VARCHAR},
       </if>
-      <if test="price != null" >
+      <if test="price != null">
         price = #{price,jdbcType=DOUBLE},
       </if>
-      <if test="stock != null" >
+      <if test="stock != null">
         stock = #{stock,jdbcType=INTEGER},
       </if>
-      <if test="skuSellCount != null" >
+      <if test="skuSellCount != null">
         sku_sell_count = #{skuSellCount,jdbcType=INTEGER},
       </if>
-      <if test="gtmCreateTime != null" >
+      <if test="gtmCreateTime != null">
         gtm_create_time = #{gtmCreateTime,jdbcType=BIGINT},
       </if>
-      <if test="gtmModifyTime != null" >
+      <if test="gtmModifyTime != null">
         gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.hlq.common.pojo.Sku" >
+  <update id="updateByPrimaryKey" parameterType="cn.hlq.common.pojo.Sku">
     update sku
     set goods_id = #{goodsId,jdbcType=INTEGER},
       sku_properties = #{skuProperties,jdbcType=VARCHAR},
@@ -125,4 +125,6 @@
       gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
 </mapper>

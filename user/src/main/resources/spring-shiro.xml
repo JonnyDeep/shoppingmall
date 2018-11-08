@@ -25,6 +25,7 @@
             <value>
                 /share=authc
                 /logout=logout
+                /goods/* = anon
             </value>
         </property>
     </bean>
@@ -55,7 +56,7 @@
         <property name="maxAge" value="-1"/>
         <!--<property name="name" value="shiro.session.id"/>-->
         <property name="domain" value="shopmall.com"/>
-        <!--<property name="path" value=""/>-->
+        <property name="path" value=""/>
     </bean>
 
    <bean id="customerSessionListener" class="cn.hlq.common.utils.session.CustomerSessionListener"/>

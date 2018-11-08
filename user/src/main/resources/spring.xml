@@ -11,5 +11,5 @@
     <dubbo:reference interface="cn.hlq.service.TestService" id="testService"/>
     <dubbo:reference interface="cn.hlq.service.CustomerService" id="customerService"/>
     <dubbo:reference interface="cn.hlq.service.GoodsService" id="goodsService"/>
-
+    <dubbo:reference interface="cn.hlq.service.SkuGoodsService" id="skuGoodsService"/>
 </beans>

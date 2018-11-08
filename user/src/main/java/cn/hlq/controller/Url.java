@@ -38,6 +38,7 @@ public class Url {
         UsernamePasswordToken token = new UsernamePasswordToken(customer.getUsername(),MD5Utils.MD5(customer.getPassword()));
         try {
             subject.login(token);
+            token.setRememberMe(true);
 //            Session session=subject.getSession();
 //            logger.info("----- session id:{}",session.getId());
 //            Collection c = session.getAttributeKeys();

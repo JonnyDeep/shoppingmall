@@ -5,12 +5,15 @@ import cn.hlq.common.utils.Datetils;
 import cn.hlq.common.utils.Exception.CustomException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.lang.invoke.MethodHandle;
@@ -21,12 +24,16 @@ import java.util.Date;
 @Component
 public class LogAopAction {
 
+
+
     private static Logger logger = LogManager.getLogger(LogAopAction.class.getName());
     @Pointcut("execution(* cn.hlq.controller..*.*(..))")
     private void controllerOperation(){}
 
     @Around("cn.hlq.aop.LogAopAction.controllerOperation()")
     public Object doAroundControllerCheck(ProceedingJoinPoint pjp) throws Throwable{
+        
+
         Date date = new Date();
         String time = Datetils.Long2DateFormat(date.getTime());
         logger.info("---------- currentTime:{}",time);

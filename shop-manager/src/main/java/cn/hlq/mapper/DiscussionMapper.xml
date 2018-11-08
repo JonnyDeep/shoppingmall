@@ -114,4 +114,8 @@
       gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="queryDiscussionCountByGoodsId" resultType="java.lang.Integer">
+     SELECT count(*) FROM discussion WHERE goods_id=#{goodsId}
+  </select>
 </mapper>

@@ -11,5 +11,6 @@
     <dubbo:service interface="cn.hlq.service.DiscussionService" ref="discussionService"/>
     <dubbo:service interface="cn.hlq.service.GoodsService" ref="goodsService"/>
     <dubbo:service interface="cn.hlq.service.TestService" ref="testService" />
+    <dubbo:service interface="cn.hlq.service.SkuGoodsService" ref="skuGoodsService"/>
 
 </beans>

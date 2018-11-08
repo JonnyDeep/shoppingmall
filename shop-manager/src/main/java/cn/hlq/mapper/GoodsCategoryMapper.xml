@@ -1,88 +1,88 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.hlq.dao.GoodsCategoryMapper" >
-  <resultMap id="BaseResultMap" type="cn.hlq.common.pojo.GoodsCategory" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="parent_category_id" property="parentCategoryId" jdbcType="INTEGER" />
-    <result column="gtm_create_time" property="gtmCreateTime" jdbcType="BIGINT" />
-    <result column="gtm_modify_time" property="gtmModifyTime" jdbcType="BIGINT" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hlq.dao.GoodsCategoryMapper">
+  <resultMap id="BaseResultMap" type="cn.hlq.common.pojo.GoodsCategory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="parent_category_id" jdbcType="INTEGER" property="parentCategoryId" />
+    <result column="gtm_create_time" jdbcType="BIGINT" property="gtmCreateTime" />
+    <result column="gtm_modify_time" jdbcType="BIGINT" property="gtmModifyTime" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, name, parent_category_id, gtm_create_time, gtm_modify_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from goodscategory
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from goodscategory
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.hlq.common.pojo.GoodsCategory" >
+  <insert id="insert" parameterType="cn.hlq.common.pojo.GoodsCategory">
     insert into goodscategory (id, name, parent_category_id, 
       gtm_create_time, gtm_modify_time)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentCategoryId,jdbcType=INTEGER}, 
       #{gtmCreateTime,jdbcType=BIGINT}, #{gtmModifyTime,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="cn.hlq.common.pojo.GoodsCategory" >
+  <insert id="insertSelective" parameterType="cn.hlq.common.pojo.GoodsCategory">
     insert into goodscategory
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         name,
       </if>
-      <if test="parentCategoryId != null" >
+      <if test="parentCategoryId != null">
         parent_category_id,
       </if>
-      <if test="gtmCreateTime != null" >
+      <if test="gtmCreateTime != null">
         gtm_create_time,
       </if>
-      <if test="gtmModifyTime != null" >
+      <if test="gtmModifyTime != null">
         gtm_modify_time,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="parentCategoryId != null" >
+      <if test="parentCategoryId != null">
         #{parentCategoryId,jdbcType=INTEGER},
       </if>
-      <if test="gtmCreateTime != null" >
+      <if test="gtmCreateTime != null">
         #{gtmCreateTime,jdbcType=BIGINT},
       </if>
-      <if test="gtmModifyTime != null" >
+      <if test="gtmModifyTime != null">
         #{gtmModifyTime,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.hlq.common.pojo.GoodsCategory" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.hlq.common.pojo.GoodsCategory">
     update goodscategory
-    <set >
-      <if test="name != null" >
+    <set>
+      <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="parentCategoryId != null" >
+      <if test="parentCategoryId != null">
         parent_category_id = #{parentCategoryId,jdbcType=INTEGER},
       </if>
-      <if test="gtmCreateTime != null" >
+      <if test="gtmCreateTime != null">
         gtm_create_time = #{gtmCreateTime,jdbcType=BIGINT},
       </if>
-      <if test="gtmModifyTime != null" >
+      <if test="gtmModifyTime != null">
         gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.hlq.common.pojo.GoodsCategory" >
+  <update id="updateByPrimaryKey" parameterType="cn.hlq.common.pojo.GoodsCategory">
     update goodscategory
     set name = #{name,jdbcType=VARCHAR},
       parent_category_id = #{parentCategoryId,jdbcType=INTEGER},
@@ -90,4 +90,6 @@
       gtm_modify_time = #{gtmModifyTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
 </mapper>
